@@ -11,9 +11,7 @@ public class SellMenuScroll : MonoBehaviour
     async void Start()
     {
         Content = GameObject.Find("Sell Content");
-        ApiConverter converter = new ApiConverter();
-        converter.setId("hpiem-ue66e-gngde-xhede-3ntv2-mb6kq-jn5ud-6n7df-mbvpf-qqva7-xae");
-        list = await converter.GetItem();
+        list = datList.data;
         StartCoroutine(wait());
         
     }
