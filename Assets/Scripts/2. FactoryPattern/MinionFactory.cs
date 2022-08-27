@@ -25,7 +25,7 @@ public class MinionFactory : AbstractFactoryEnemy
     public void CreateEnemy(GameObject spawnPos)
     {
         GameObject minionsGameObject = ObjectPool.SharedInstance.GetPooledObject("Minions");
-        if(minionsGameObject != null)
+        if (minionsGameObject != null)
         {
             minionsGameObject.transform.position = spawnPos.transform.position;
             minionsGameObject.SetActive(true);

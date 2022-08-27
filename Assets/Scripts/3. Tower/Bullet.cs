@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour
 {
     private Vector3 targetPosition;
     private float damage;
-    private Action<Bullet> action;
+    private Action<GameObject> action;
 
     public float Damage
     {
@@ -20,34 +20,33 @@ public class Bullet : MonoBehaviour
     public AEnemy Target
     {
         set { target = value; }
-        get { return target; }
     }
 
     private void Update()
     {
-        if (!target.isActiveAndEnabled)
-        {
-            action(this);
-            Target = null;
-            return;
-        }
-        targetPosition = target.transform.position;
+        //if (!target.isActiveAndEnabled)
+        //{
+        //    action(this);
+        //    Target = null;
+        //    return;
+        //}
+        //targetPosition = target.transform.position;
 
-        Vector3 moveDir = (targetPosition - transform.position).normalized;
+        //Vector3 moveDir = (targetPosition - transform.position).normalized;
 
-        float moveSpeed = 10f;
+        //float moveSpeed = 10f;
 
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
+        //transform.position += moveDir * moveSpeed * Time.deltaTime;
 
-        float angle = GetAngleFromFloatVector(moveDir);
-        transform.eulerAngles = new Vector3(0, 0, angle);
+        //float angle = GetAngleFromFloatVector(moveDir);
+        //transform.eulerAngles = new Vector3(0, 0, angle);
 
-        float destroyDistance = 0.1f;
-        if (Vector3.Distance(transform.position, targetPosition) < destroyDistance)
-        {
-            target.ReceiveDamage(damage);
-            action(this);
-        }
+        //float destroyDistance = 0.1f;
+        //if (Vector3.Distance(transform.position, targetPosition) < destroyDistance)
+        //{
+        //    target.ReceiveDamage(damage);
+        //    action(this);
+        //}
     }
     float GetAngleFromFloatVector(Vector3 dir)
     {
@@ -56,7 +55,7 @@ public class Bullet : MonoBehaviour
         if (n < 0) n += 360;
         return n;
     }
-    public void DisableAction(Action<Bullet> releaseAction)
+    public void DisableAction(Action<GameObject> releaseAction)
     {
         action = releaseAction;
     }

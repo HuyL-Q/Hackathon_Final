@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,6 +13,7 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
     GameObject _destination;
     //private int wavepointIndex;
     //string id;
+    [SerializeField]
     float _hp;
     //float runSpeed;
     int _damageToCastle;
@@ -178,14 +180,16 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
     //    }
     //}
 
-    public abstract void SetEnemy(string id);
+    public abstract IEnumerator SetEnemy(string id);
 
     public void ReceiveDamage(float dmg)
     {
         //throw new System.NotImplementedException();
         HP -= dmg;
-        if(HP < 0)
+        if (HP <= 0)
         {
+            NewSpawnController.Instance.CurrentNumOfEnemies--;
+            Agent.isStopped = true;
             GiveReward();
             Animator.SetTrigger(Dead);
         }
@@ -204,17 +208,18 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
     {
         GameController.instance.PlayerMoney += Reward;
         GameController.instance.PlayerPoint += Mathf.Ceil(Reward * 1.5f);
+        StoryUIController.instance.UpdateGoldIndex();
         //throw new System.NotImplementedException();
     }
 
     public void Die()
     {
-        NewSpawnController.Instance.CurrentNumOfEnemies--;
-        gameObject.SetActive(false);    
+        gameObject.SetActive(false);
     }
 
     private void OnEnable()
     {
+        StartCoroutine(SetEnemy("enemy_01_1"));
         Agent = GetComponent<NavMeshAgent>();
         _destination = GameObject.Find("Destination");
         Agent.destination = _destination.transform.position;

@@ -8,5 +8,5 @@ public interface IEnemy
     void ReceiveDamage(float damage);
     void AttackToCastle();
     void GiveReward();
-    void SetEnemy(string id);
+    //void SetEnemy(string id);
 }

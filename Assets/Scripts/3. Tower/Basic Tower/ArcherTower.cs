@@ -35,7 +35,7 @@ public class ArcherTower : ATower
         //import data from json here
         string[] idSplit = id.Split("_");
         string nextID = idSplit[0] + "_" + idSplit[1] + "_" + (int.Parse(idSplit[2]) + 1);
-        TowerConverter tc = new TowerConverter();
+        TowerConverter tc = new();
         tc.setCurrentDir(@"\TowerStat.json");
         UnityWebRequest uwr = UnityWebRequest.Get(tc.CurrentDirectory);
         yield return uwr.SendWebRequest();

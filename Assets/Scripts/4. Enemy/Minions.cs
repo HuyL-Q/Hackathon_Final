@@ -1,4 +1,7 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 
 public class Minions : AEnemy
 {
@@ -14,12 +17,14 @@ public class Minions : AEnemy
         public int width;
         public int height;
     }
-    public override void SetEnemy(string id)
+    public override IEnumerator SetEnemy(string id)
     {
         //import data from json here
         EnemyConverter ec = new EnemyConverter();
         ec.setCurrentDir(@"\EnemyStats.json");
-        List<EnemyJs> ar = ec.getObjectFromJSON();
+        UnityWebRequest uwr = UnityWebRequest.Get(ec.CurrentDirectory);
+        yield return uwr.SendWebRequest();
+        List<EnemyJs> ar = ec.getObjectfromText(uwr.downloadHandler.text);
         foreach (EnemyJs a in ar)
             if (a.id == id)
             {
@@ -32,7 +37,7 @@ public class Minions : AEnemy
     }
     public override void Start()
     {
-        SetEnemy("enemy_01_1");
+        //StartCoroutine(SetEnemy("enemy_01_1"));
         base.Start();
     }
 
