@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class SamuraiBoss : MonoBehaviour
 {
-    int hp;
-    int maxHp;
-    int atkDamage;
+    float hp;
+    float maxHp;
+    float atkDamage;
 
     //float time;
     public delegate void onHealthChange();
     public event onHealthChange OnHealthChange;
     Animator _animator;
 
-    public int Hp
+    public float Hp
     {
         get => hp; set
         {
@@ -24,8 +24,8 @@ public class SamuraiBoss : MonoBehaviour
             OnHealthChange?.Invoke();
         }
     }
-    public int AtkDamage { get => atkDamage; set => atkDamage = value; }
-    public int MaxHp { get => maxHp; set => maxHp = value; }
+    public float AtkDamage { get => atkDamage; set => atkDamage = value; }
+    public float MaxHp { get => maxHp; set => maxHp = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -77,7 +77,7 @@ public class SamuraiBoss : MonoBehaviour
 
     void SetStatus()
     {
-        MaxHp = 1000;
+        MaxHp = 10000;
         Hp = MaxHp;
         AtkDamage = 50;
     }

@@ -5,9 +5,9 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     private Action<GameObject> onRelease;
-    private int damage;
+    private float damage;
     private GameObject targetAiming;
-    public int Damage { get => damage; set => damage = value; }
+    public float Damage { get => damage; set => damage = value; }
     public GameObject TargetAiming { get => targetAiming; set => targetAiming = value; }
     public Action<GameObject> OnRelease { get => onRelease; set => onRelease = value; }
 

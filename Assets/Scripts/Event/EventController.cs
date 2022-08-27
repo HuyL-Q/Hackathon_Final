@@ -1,5 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Networking;
 
 public enum State { Prestart, Start, End_Defeat, End_Victory, Pause };
 
@@ -11,14 +13,36 @@ public class EventController : MonoBehaviour
     public GameObject spawnPosition;
     [SerializeField]
     GameObject bossPrefab;
-    private int dmgDealed;
+    private float dmgDealed;
     private float activeTimer;
     private State state;
     public State State { get { return state; } set { state = value; } }
     public static EventController Instance { get; set; }
     public float ActiveTimer { get => activeTimer; set => activeTimer = value; }
-    public int DmgDealed { get => dmgDealed; set => dmgDealed = value; }
+    public float DmgDealed
+    {
+        get => dmgDealed; set {
+            dmgDealed = value;
+            StartCoroutine(GetData(value));
+        }
+    }
 
+    IEnumerator GetData(float value)
+    {
+        BossStatAssign bsa = new();
+        UnityWebRequest uwr = UnityWebRequest.Get("https://database.lhr.rocks/HackathonAPI/GetData?principalId=" + "hpiem-ue66e-gngde-xhede-3ntv2-mb6kq-jn5ud-6n7df-mbvpf-qqva7-xae" + "&damage=" + value);
+        yield return uwr.SendWebRequest();
+        BossStat bs = bsa.getObjectfromText(uwr.downloadHandler.text);
+        var bossScript = GameObject.Find("Samurai Boss").GetComponent<SamuraiBoss>();
+        bossScript.Hp = bs.health;
+    }
+    public class BossStat
+    {
+        public float health;
+        public float attack;
+    }
+
+    public class BossStatAssign : JsonConverter<BossStat> { }
     private void Awake()
     {
         if (Instance == null)

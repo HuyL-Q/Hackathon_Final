@@ -1,12 +1,14 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.Pool;
 
 public class Heroes : MonoBehaviour
 {
     private int placementIndex;
-    private int maxHP;
-    private int hp;
-    private int atkDamage;
+    private float maxHP;
+    private float hp;
+    private float atkDamage;
     private float atkSpeed;
     [SerializeField]
     GameObject _arrow;
@@ -17,7 +19,7 @@ public class Heroes : MonoBehaviour
     [SerializeField]
     GameObject healthBar;
 
-    public int HP
+    public float HP
     {
         get => hp;
         set
@@ -28,7 +30,7 @@ public class Heroes : MonoBehaviour
         }
     }
 
-    public int AtkDamage { get => atkDamage; set => atkDamage = value; }
+    public float AtkDamage { get => atkDamage; set => atkDamage = value; }
     public float AtkSpeed { get => atkSpeed; set => atkSpeed = value; }
     public int PlacementIndex { get => placementIndex; set => placementIndex = value; }
 
@@ -78,11 +80,10 @@ public class Heroes : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void ReceiveDamage(int dmg)
+    public void ReceiveDamage(float dmg)
     {
         HP -= dmg;
     }
-
     public void Attack()
     {
         GameObject arrowGO = objectPool.Get();
