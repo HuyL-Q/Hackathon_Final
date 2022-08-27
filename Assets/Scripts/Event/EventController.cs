@@ -37,6 +37,10 @@ public class EventController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        foreach (item item in datList.data)
+        {
+            Debug.Log(item.link + " " + item.name);
+        }
         Instantiate(bossPrefab, new(-10, 0, 0), Quaternion.identity);
     }
 

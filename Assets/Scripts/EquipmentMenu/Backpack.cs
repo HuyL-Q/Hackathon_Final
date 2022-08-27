@@ -22,7 +22,7 @@ public class Backpack : MonoBehaviour
         GameControllerE.DisableItem();
         foreach (Item item in GameControllerE.ItemList)
         {
-            foreach(item data in GameControllerE.datList)
+            foreach(item data in datList.data)
             {
                 if(item.Id == data.name)
                 {
@@ -64,7 +64,7 @@ public class Backpack : MonoBehaviour
         {
             if (itemid.Equals(item.Id))
             {
-                foreach (item itm in GameControllerE.datList)
+                foreach (item itm in datList.data)
                     if (item.Id == itm.name)
                     {
                         GameObject Item;

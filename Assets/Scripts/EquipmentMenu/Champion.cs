@@ -71,7 +71,7 @@ public class Champion : ATower
     }
     IEnumerator wait()
     {
-        yield return new WaitUntil(() => GameControllerE.datList != null);
+        yield return new WaitUntil(() => datList.data != null);
         setChampion("tower_hero_01");
     }
     // Update is called once per frame

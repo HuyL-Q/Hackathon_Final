@@ -7,7 +7,7 @@ public class GameControllerE : MonoBehaviour
 {
     public static List<Champion> championList;
     public static List<Item> ItemList;
-    public static List<item> datList;
+    //public static List<item> datList.data;
     public static List<EquipmentSelector> equipmentSelectorList;
     public GameObject changeHeroMenu;
     public static GameObject ChangeHeroMenu;
@@ -43,7 +43,7 @@ public class GameControllerE : MonoBehaviour
         flag = false;
         ApiConverter converter = new ApiConverter();
         converter.setId("hpiem-ue66e-gngde-xhede-3ntv2-mb6kq-jn5ud-6n7df-mbvpf-qqva7-xae");
-        datList = await converter.GetItem();
+        //datList.data = datList.data.data;
         StartCoroutine(wait());
         ChangeHeroMenu = changeHeroMenu;
         championList = new List<Champion>();
@@ -56,7 +56,7 @@ public class GameControllerE : MonoBehaviour
     }
     IEnumerator wait()
     {
-        yield return new WaitUntil(() => GameControllerE.datList != null);
+        yield return new WaitUntil(() => datList.data != null);
         flag = true;
     }
     public static void EnableChangeHeroMenu()
@@ -128,7 +128,7 @@ public class GameControllerE : MonoBehaviour
         List<Item> removeItem = new List<Item>();
         foreach (Item item in ItemList)
         {
-            foreach (item item1 in datList)
+            foreach (item item1 in datList.data)
             {
                 if (item.Id == item1.name)
                 {

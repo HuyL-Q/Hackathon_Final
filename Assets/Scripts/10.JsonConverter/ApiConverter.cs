@@ -22,17 +22,6 @@ public class ApiConverter
         _client.BaseAddress = new Uri("http://hackathonfinal.lhr.rocks/");
         _client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     }
-
-
-    public async Task<List<item>> GetListChoosen()
-    {
-        _response = await _client.GetAsync($"users");
-        var json = await _response.Content.ReadAsStringAsync();
-        ApiConv conv = new ApiConv();
-        dat list = conv.getObjectfromText(json);
-        GameControllerE.datList = list.Data;
-        return list.Data;
-    }
     public async Task<item> GetItemChoosen(string link)
     {
         _response = await _client.GetAsync(link);
@@ -73,17 +62,18 @@ public class ApiConverter
         {
             try
             {
+                count++;
                 _response = await _client.GetAsync($"token?principalId=" + id);
                 json = await _response.Content.ReadAsStringAsync();//link 2
-                if (json.Contains("https") || count > 2)
-                    break;
-                count++;
+                if (json.Contains("https") || count > 3)
+                    goto Foo;
             }
             catch (Exception E)
             {
-                Debug.Log(E.Message);
+                Debug.Log(E.Message + ", cannot access to API, count = " + count);
             }
         }
+        Foo:
         List<string> link = CutLink(json);
         foreach (var item in link)
         {
