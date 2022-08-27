@@ -42,6 +42,7 @@ public class GameControllerE : MonoBehaviour
     {
         flag = false;
         ApiConverter converter = new ApiConverter();
+        converter.setId("hpiem-ue66e-gngde-xhede-3ntv2-mb6kq-jn5ud-6n7df-mbvpf-qqva7-xae");
         datList = await converter.GetItem();
         StartCoroutine(wait());
         ChangeHeroMenu = changeHeroMenu;
