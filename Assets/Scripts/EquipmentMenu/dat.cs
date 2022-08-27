@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class dat
 {
-        public List<item> Data;
+    public List<item> Data;
+    public List<Link> Link;
+    public List<item> AddItemToList()
+    {
+
+        return Data;
+    }
 }
 public class item
 {
@@ -15,5 +21,16 @@ public class item
     {
         this.name = name;
         this.link = link;
+    }
+}
+public class Link
+{
+    public string owner;
+    public List<string> link;
+    public float balance;
+    public Link() { }
+    public Link(string link)
+    {
+        
     }
 }

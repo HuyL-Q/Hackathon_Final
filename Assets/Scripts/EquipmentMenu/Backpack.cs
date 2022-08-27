@@ -41,7 +41,6 @@ public class Backpack : MonoBehaviour
             }
         }
         Champion chosen = GameControllerE.choosenHero;
-        Debug.Log(GameObject.Find("item_10"));
         if(GameControllerE.equipmentSelectorList != null)
         foreach (EquipmentSelector eqc in GameControllerE.equipmentSelectorList)
         {
