@@ -151,7 +151,6 @@ public abstract class ATower : MonoBehaviour, ITower
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.tag);
         if (collision.CompareTag("Minions"))
         {
             monsters.Add(collision.gameObject);
