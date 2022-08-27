@@ -1,0 +1,11 @@
+[
+    {
+      "id": "tower_hero_01",
+      "damage": 5,
+      "health": 100,
+      "range": 10,
+      "attackSpeed": 10,
+      "price": 10,
+      "status": true
+    }
+  ]

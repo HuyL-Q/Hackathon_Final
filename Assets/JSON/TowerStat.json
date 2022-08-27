@@ -1,0 +1,130 @@
+[
+  {
+    "id": "tower_archer_1",
+    "attack": 5,
+    "attackSpeed": 0.8,
+    "range": 2,
+    "Special": [],
+    "Cost": 70,
+    "width": 2,
+    "height": 2,
+    "bulletID": "bullet_id"
+  },
+  {
+    "id": "tower_archer_2",
+    "attack": 9,
+    "attackSpeed": 0.6,
+    "range": 2,
+    "Special": [],
+    "Cost": 110,
+    "width": 2,
+    "height": 2,
+    "bulletID": "bullet_id"
+  },
+  {
+    "id": "tower_archer_3",
+    "attack": 13,
+    "attackSpeed": 0.5,
+    "range": 2,
+    "Special": [],
+    "Cost": 160,
+    "width": 2,
+    "height": 2,
+    "bulletID": "bullet_id"
+  },
+  {
+    "id": "tower_archer_4_1",
+    "attack": 16,
+    "attackSpeed": 0.4,
+    "range": 2,
+    "Special": [
+      "Aff_01"
+    ],
+    "Cost": 230,
+    "width": 2,
+    "height": 2,
+    "bulletID": "bullet_id"
+  },
+  {
+    "id": "tower_archer_4_2",
+    "attack": 50,
+    "attackSpeed": 1.5,
+    "range": 2,
+    "Special": [
+      "Aff_05"
+    ],
+    "Cost": 230,
+    "width": 2,
+    "height": 2,
+    "bulletID": "bullet_id"
+  },
+  {
+    "id": "tower_catapult_1",
+    "attack": 12,
+    "attackSpeed": 3,
+    "range": 2,
+    "Special": [],
+    "Cost": 125,
+    "width": 2,
+    "height": 2,
+    "bulletID": "bullet_id"
+  },
+  {
+    "id": "tower_catapult_2",
+    "attack": 30,
+    "attackSpeed": 3,
+    "range": 2,
+    "Special": [],
+    "Cost": 220,
+    "width": 2,
+    "height": 2,
+    "bulletID": "bullet_id"
+  },
+  {
+    "id": "tower_catapult_3",
+    "attack": 50,
+    "attackSpeed": 3,
+    "range": 2,
+    "Special": [
+      "Aff_04",
+      "Aff_05"
+    ],
+    "Cost": 320,
+    "width": 2,
+    "height": 2,
+    "bulletID": "bullet_id"
+  },
+  {
+    "id": "tower_arrow_1",
+    "attack": 13,
+    "attackSpeed": 1.5,
+    "range": 2,
+    "Special": [],
+    "Cost": 100,
+    "width": 2,
+    "height": 2,
+    "bulletID": "bullet_id"
+  },
+  {
+    "id": "tower_arrow_2",
+    "attack": 33,
+    "attackSpeed": 1.5,
+    "range": 2,
+    "Special": [],
+    "Cost": 160,
+    "width": 2,
+    "height": 2,
+    "bulletID": "bullet_id"
+  },
+  {
+    "id": "tower_arrow_3",
+    "attack": 64,
+    "attackSpeed": 1.5,
+    "range": 2,
+    "Special": [],
+    "Cost": 240,
+    "width": 2,
+    "height": 2,
+    "bulletID": "bullet_id"
+  }
+]

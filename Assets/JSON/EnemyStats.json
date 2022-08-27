@@ -1,0 +1,242 @@
+[
+    {
+      "id": "enemy_01_1",
+      "level": 1,
+      "hp": 160,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 16,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_01_2",
+      "level": 2,
+      "hp": 290,
+      "speed": 1,
+      "damage": 2,
+      "killReward": 24,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_01_3",
+      "level": 3,
+      "hp": 70,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_01_4",
+      "level": 4,
+      "hp": 70,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_02_1",
+      "level": 1,
+      "hp": 160,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 16,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_02_2",
+      "level": 2,
+      "hp": 70,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_02_3",
+      "level": 3,
+      "hp": 70,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_02_4",
+      "level": 4,
+      "hp": 70,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_03_1",
+      "level": 1,
+      "hp": 70,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_03_2",
+      "level": 2,
+      "hp": 70,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_03_3",
+      "level": 3,
+      "hp": 70,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_03_4",
+      "level": 4,
+      "hp": 70,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_04_1",
+      "level": 1,
+      "hp": 70,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_04_2",
+      "level": 2,
+      "hp": 70,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_04_3",
+      "level": 3,
+      "hp": 70,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_04_4",
+      "level": 4,
+      "hp": 70,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_05_1",
+      "level": 1,
+      "hp": 70,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_05_2",
+      "level": 2,
+      "hp": 70,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_05_3",
+      "level": 3,
+      "hp": 70,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "enemy_05_4",
+      "level": 4,
+      "hp": 70,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "boss_01",
+      "level": 4,
+      "hp": 500,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "boss_02",
+      "level": 4,
+      "hp": 700,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "boss_03",
+      "level": 4,
+      "hp": 900,
+      "speed": 1,
+      "damage": 1,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "id": "boss_04",
+      "level": 4,
+      "hp": 1500,
+      "speed": 1,
+      "damage":30,
+      "killReward": 5,
+      "width": 2,
+      "height": 2
+    }
+  ]
