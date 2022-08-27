@@ -74,7 +74,7 @@ public class SpawnController : MonoBehaviour
         wayPoint1 = new Vector3[8];
         wayPoint2 = new Vector3[7];
         VectorConverter vConv = new VectorConverter();
-        vConv.setCurrentDir(@"\Assets\JSON\WaypointCoord.json");
+        vConv.setCurrentDir(@"\WaypointCoord.json");
         List<Vect3> VecAr = vConv.getObjectFromJSON();
         int startCount = 0;
         int wpCount0 = 0;
@@ -104,7 +104,7 @@ public class SpawnController : MonoBehaviour
             }
         }
         WaveControlConverter wcc = new WaveControlConverter();
-        wcc.setCurrentDir(@"\Assets\JSON\WaveController.json");
+        wcc.setCurrentDir(@"\WaveController.json");
         wcList = wcc.getObjectFromJSON();
     }
     void Update()

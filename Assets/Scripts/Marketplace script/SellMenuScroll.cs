@@ -12,7 +12,7 @@ public class SellMenuScroll : MonoBehaviour
     {
         Content = GameObject.Find("Sell Content");
         ApiConverter converter = new ApiConverter();
-        list = await converter.GetListChoosen();
+        list = await converter.GetItem();
         StartCoroutine(wait());
         
     }

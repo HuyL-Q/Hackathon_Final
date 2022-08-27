@@ -18,7 +18,7 @@ public class Minions : AEnemy
     {
         //import data from json here
         EnemyConverter ec = new EnemyConverter();
-        ec.setCurrentDir(@"\Assets\JSON\EnemyStats.json");
+        ec.setCurrentDir(@"\EnemyStats.json");
         List<EnemyJs> ar = ec.getObjectFromJSON();
         foreach (EnemyJs a in ar)
             if (a.id == id)

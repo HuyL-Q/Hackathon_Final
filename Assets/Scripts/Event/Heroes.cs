@@ -51,7 +51,7 @@ public class Heroes : MonoBehaviour
     void SetStatus()
     {
         StatConverter stat = new StatConverter();
-        stat.setCurrentDir(@"\Assets\JSON\FinalStat.json");
+        stat.setCurrentDir(@"\FinalStat.json");
         FinalStat fs = stat.getObjectFromJSON();
         maxHP = fs.Health;
         HP = maxHP;

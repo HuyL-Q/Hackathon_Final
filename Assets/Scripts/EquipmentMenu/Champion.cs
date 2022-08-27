@@ -108,12 +108,13 @@ public class Champion : ATower
         }
         Destroy(GameObject.Find(type).transform.GetChild(1).gameObject);
     }
-    public override void SetTower(string id)
+
+    public override int GetSize()
     {
         throw new System.NotImplementedException();
     }
 
-    public override int GetSize()
+    public override IEnumerator SetTower(string id)
     {
         throw new System.NotImplementedException();
     }

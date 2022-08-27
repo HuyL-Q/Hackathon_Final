@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,11 +33,12 @@ public class HeroTower : ATower
     {
         throw new System.NotImplementedException();
     }
-    public override void SetTower(string id)
+    public override int GetNextCost(string id)
     {
         throw new System.NotImplementedException();
     }
-    public override int GetNextCost(string id)
+
+    public override IEnumerator SetTower(string id)
     {
         throw new System.NotImplementedException();
     }

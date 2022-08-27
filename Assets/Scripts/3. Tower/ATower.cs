@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -10,9 +11,14 @@ public abstract class ATower : MonoBehaviour, ITower
     GameObject bullet;
     //[SerializeField]
     //private Sprite[] towerUgradeSprites;
+    [SerializeField]
+    List<GameObject> monsters;
+    [SerializeField]
+    GameObject rangeIndicator;
     private string id;
     private int damage;
     private float range;
+    [SerializeField]
     private double attackSpeed;
     private int price;
     private int size;
@@ -22,7 +28,7 @@ public abstract class ATower : MonoBehaviour, ITower
     public ObjectPool<GameObject> objectPool;
     private double shootTimer;
     private int spriteIndex;
-    List<towerJs> idList = new List<towerJs>();
+    List<TowerJs> idList = new List<TowerJs>();
     public string ID
     {
         get { return id; }
@@ -66,10 +72,11 @@ public abstract class ATower : MonoBehaviour, ITower
     }
     public List<string> Special { get => special; set => special = value; }
     public int SpriteIndex { get => spriteIndex; set => spriteIndex = value; }
-    public List<towerJs> IdList { get => idList; set => idList = value; }
+    public List<TowerJs> IdList { get => idList; set => idList = value; }
     public int PlacementIndex { get => placementIndex; set => placementIndex = value; }
+    public GameObject RangeIndicator { get => rangeIndicator; }
 
-    public class towerJs
+    public class TowerJs
     {
         public string id;
         public int attack;
@@ -83,7 +90,7 @@ public abstract class ATower : MonoBehaviour, ITower
 
         public int Cost { get => cost; set => cost = value; }
         public List<string> Special { get => special; set => special = value; }
-        public towerJs(string id, int attack, double attackSpeed, float range, List<string> special, int cost, int width, int height, string bulletID)
+        public TowerJs(string id, int attack, double attackSpeed, float range, List<string> special, int cost, int width, int height, string bulletID)
         {
             this.id = id;
             this.attack = attack;
@@ -105,10 +112,12 @@ public abstract class ATower : MonoBehaviour, ITower
     //{
     //    return towerUgradeSprites[SpriteIndex + i];
     //}
-    public abstract void SetTower(string id);
+    public abstract IEnumerator SetTower(string id);
     public virtual void Attack()
     {
+        //Vector3.
         GameObject arrowGO = objectPool.Get();
+        arrowGO.transform.localScale = new(5, 5, 5);
         arrowGO.transform.position = ShootPosition;
         //arrowGO.transform.localScale = transform.localScale;
         arrowGO.GetComponent<Arrow>().Damage = Damage;
@@ -119,7 +128,7 @@ public abstract class ATower : MonoBehaviour, ITower
     public virtual int GetNextCost(string id)
     {
         int nextLevelCost = 0;
-        foreach (towerJs i in IdList)
+        foreach (TowerJs i in IdList)
         {
             if (i.id.Contains(id))
                 nextLevelCost = i.Cost;
@@ -130,7 +139,7 @@ public abstract class ATower : MonoBehaviour, ITower
     {
         //get id of tower need to upgrade
         List<string> idU = new List<string>();
-        foreach (towerJs i in IdList)
+        foreach (TowerJs i in IdList)
         {
             if (i.id.Contains(id))
             {
@@ -142,41 +151,53 @@ public abstract class ATower : MonoBehaviour, ITower
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision.tag);
+        if (collision.CompareTag("Minions"))
+        {
+            monsters.Add(collision.gameObject);
+        }
+    }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Minions"))
+        {
+            GameObject monster = collision.gameObject;
+            if (monster.GetComponent<Minions>().HP <= 0)
+            {
+                monsters.Remove(monster);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Minions"))
+        {
+            monsters.Remove(collision.gameObject);
+        }
     }
 
     public virtual void UpdateEnemy()
     {
-        List<GameObject> enemies = new(GameObject.FindGameObjectsWithTag("Minions"));
-        //enemies.AddRange(new List<GameObject>(GameObject.FindGameObjectsWithTag("Boss")));
-        float distance = Mathf.Infinity;
-        GameObject targetEnemy = null;
-        foreach (GameObject enemy in enemies)
+        if (monsters.Count > 0)
         {
-            float enemyDistance = (transform.position - enemy.transform.position).magnitude;
-            if (enemyDistance < distance)
-            {
-                targetEnemy = enemy;
-                distance = enemyDistance;
-            }
-        }
-        if (distance <= Range)
-        {
-            CurrentEnemy = targetEnemy;
+            CurrentEnemy = monsters[0];
         }
         else
         {
             CurrentEnemy = null;
         }
     }
+
     public virtual void Start()
     {
-        ShootPosition = transform.Find("ShootFromPos").position;
+        monsters = new();
         shootTimer = AttackSpeed;
         objectPool = new ObjectPool<GameObject>(() => { return Instantiate(bullet); }
-                                                , obj => { obj.gameObject.SetActive(true); }
-                                                , obj => { obj.gameObject.SetActive(false); }
-                                                , obj => { Destroy(obj.gameObject); }
+                                                , obj => { obj.SetActive(true); }
+                                                , obj => { obj.SetActive(false); }
+                                                , obj => { Destroy(obj); }
                                                 , false
                                                 , 10
                                                 , 20);
@@ -190,7 +211,17 @@ public abstract class ATower : MonoBehaviour, ITower
             UpdateEnemy();
             if (CurrentEnemy != null)
             {
+                Vector2 direction = CurrentEnemy.transform.position - transform.position;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                ShootPosition = transform.GetChild(3).position;
+                //transform.GetChild(3).rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                 Attack();
+            }
+            else
+            {
+                transform.rotation = Quaternion.identity;
+                //transform.GetChild(3).rotation = Quaternion.identity;
             }
         }
     }

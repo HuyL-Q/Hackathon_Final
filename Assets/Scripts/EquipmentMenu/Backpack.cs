@@ -58,7 +58,7 @@ public class Backpack : MonoBehaviour
     public void AutoEquip(Champion champ, string itemid)
     {
         FinalStatConverter fsc = new FinalStatConverter();
-        fsc.setCurrentDir(@"\Assets\JSON\FinalStat.json");
+        fsc.setCurrentDir(@"\FinalStat.json");
         FinalStat fs = fsc.getObjectFromJSON();
         foreach (Item item in GameControllerE.ItemList)
         {

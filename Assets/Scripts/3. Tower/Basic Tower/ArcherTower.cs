@@ -1,39 +1,46 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class ArcherTower : ATower
 {
     List<int> priceToUpgrade;
-    public class TowerConverter : JsonConverter<List<towerJs>> { }
+
+    public List<int> PriceToUpgrade { get => priceToUpgrade; }
+
+    public class TowerConverter : JsonConverter<List<TowerJs>> { }
     public override void Start()
     {
-        SpriteIndex = -1;
-        TowerConverter tc = new();
-        tc.setCurrentDir(@"\Assets\JSON\TowerStat.json");
-        List<towerJs> towerList = tc.getObjectFromJSON();
-        foreach (towerJs tower in towerList)
-            if (tower.id.Contains("tower_archer"))
-            {
-                IdList.Add(tower);
-            }
+        //SpriteIndex = -1;
+        //TowerConverter tc = new();
+        //tc.SetCurrentDir(@"\TowerStat.json");
+        //List<TowerJs> towerList = tc.GetObjectFromJSON();
+        //foreach (TowerJs tower in towerList)
+        //    if (tower.id.Contains("tower_archer"))
+        //    {
+        //        IdList.Add(tower);
+        //    }
         priceToUpgrade = new List<int>();
-        SetTower("tower_archer_1");
-        foreach (int price in priceToUpgrade)
-        {
-            Debug.Log(price);
-        }
+        StartCoroutine(SetTower("tower_archer_1"));
+        //foreach (int price in priceToUpgrade)
+        //{
+        //    Debug.Log(price);
+        //}
         base.Start();
     }
-    public override void SetTower(string id)
+    public override IEnumerator SetTower(string id)
     {
-        priceToUpgrade.Clear();
+        PriceToUpgrade.Clear();
         //import data from json here
         string[] idSplit = id.Split("_");
         string nextID = idSplit[0] + "_" + idSplit[1] + "_" + (int.Parse(idSplit[2]) + 1);
-        TowerConverter tc = new();
-        tc.setCurrentDir(@"\Assets\JSON\TowerStat.json");
-        List<towerJs> towerList = tc.getObjectFromJSON();
-        foreach (towerJs tower in towerList)
+        TowerConverter tc = new TowerConverter();
+        tc.setCurrentDir(@"\TowerStat.json");
+        UnityWebRequest uwr = UnityWebRequest.Get(tc.CurrentDirectory);
+        yield return uwr.SendWebRequest();
+        List<TowerJs> towerList = tc.getObjectfromText(uwr.downloadHandler.text);
+        foreach (TowerJs tower in towerList)
         {
             if (tower.id == id)
             {
@@ -47,9 +54,10 @@ public class ArcherTower : ATower
             }
             if (tower.id.Contains(nextID))
             {
-                priceToUpgrade.Add(tower.Cost);
+                PriceToUpgrade.Add(tower.Cost);
             }
         }
+        transform.GetChild(2).localScale = new Vector2(Range, Range);
     }
     public override int GetSize()
     {

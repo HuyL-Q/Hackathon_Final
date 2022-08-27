@@ -7,6 +7,12 @@ public class dat
 {
     public List<item> Data;
 }
+public class GetLink
+{
+    public string description;
+    public string name;
+    public string image;
+}
 public class item
 {
     public string name;

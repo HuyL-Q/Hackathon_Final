@@ -42,7 +42,7 @@ public class GameControllerE : MonoBehaviour
     {
         flag = false;
         ApiConverter converter = new ApiConverter();
-        await converter.GetListChoosen();
+        datList = await converter.GetItem();
         StartCoroutine(wait());
         ChangeHeroMenu = changeHeroMenu;
         championList = new List<Champion>();
@@ -91,18 +91,18 @@ public class GameControllerE : MonoBehaviour
         }
         list.Add(eqc);
         EquipmentSelectorConverter esc = new EquipmentSelectorConverter();
-        esc.setCurrentDir(@"\Assets\JSON\EquipmentSelector.json");
+        esc.setCurrentDir(@"\EquipmentSelector.json");
         esc.createJSON(list);
         FinalStatConverter fsc = new FinalStatConverter();
         FinalStat fs = new FinalStat(int.Parse(GameObject.Find("Attack").transform.GetChild(0).gameObject.GetComponent<Text>().text), int.Parse(GameObject.Find("Health").transform.GetChild(0).gameObject.GetComponent<Text>().text));
-        fsc.setCurrentDir(@"\Assets\JSON\FinalStat.json");
+        fsc.setCurrentDir(@"\FinalStat.json");
         fsc.createJSON(fs);
     }
     public void ResetSelector()
     {
         equipmentSelectorList.Clear();
         EquipmentSelectorConverter eqc = new EquipmentSelectorConverter();
-        eqc.setCurrentDir(@"\Assets\JSON\EquipmentSelector.json");
+        eqc.setCurrentDir(@"\EquipmentSelector.json");
         equipmentSelectorList = eqc.getObjectFromJSON();
         //auto equip
     }
@@ -114,7 +114,7 @@ public class GameControllerE : MonoBehaviour
     {
         championList.Clear();
         championConverter cc = new championConverter();
-        cc.setCurrentDir(@"\Assets\JSON\champion.json");
+        cc.setCurrentDir(@"\champion.json");
         List<championJson> championJsons = cc.getObjectFromJSON();
         foreach (championJson championJson in championJsons)
         {
@@ -141,7 +141,7 @@ public class GameControllerE : MonoBehaviour
     {
         ItemList.Clear();
         itemConverter c = new itemConverter();
-        c.setCurrentDir(@"\Assets\JSON\Equipment.json");
+        c.setCurrentDir(@"\Equipment.json");
         List<ItemJs> ItemJsons = c.getObjectFromJSON();
         foreach (ItemJs I in ItemJsons)
         {

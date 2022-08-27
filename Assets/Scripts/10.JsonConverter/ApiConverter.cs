@@ -14,10 +14,11 @@ public class ApiConverter : MonoBehaviour
     public class ApiConv : JsonConverter<dat> { }
     public class ApiConvItem : JsonConverter<item> { }
     public class ApiConvLink : JsonConverter<Link> { }
+    public class ApiGetLink : JsonConverter<GetLink> { }
     public ApiConverter()
     {
         _client = new HttpClient();
-        _client.BaseAddress = new Uri("http://localhost:3000/");
+        _client.BaseAddress = new Uri("http://hackathonfinal.lhr.rocks/");
         _client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     }
 
@@ -39,6 +40,55 @@ public class ApiConverter : MonoBehaviour
         ApiConvItem conv = new ApiConvItem();
         item = conv.getObjectfromText(json);
         return item;
+    }
+    public List<string> CutLink(string text)
+    {
+        List<string> list = new List<string>();
+        string cur = "";
+        for (int i = 0; i < text.Length; i++)
+        {
+            char c = text[i];
+            if (c == null)
+                continue;
+            cur += c;
+            if (cur.EndsWith(".json"))
+            {
+                list.Add(cur);
+                cur = "";
+            }
+        }
+        return list;
+    }
+    public async Task<List<item>> GetItem()
+    {//link 1
+        List<item> ls = new List<item>();
+        _response = await _client.GetAsync($"");
+        var json = await _response.Content.ReadAsStringAsync();//link 2
+        List<string> link = CutLink(json);
+        foreach (var item in link)
+        {
+            try
+            {
+                _client = new HttpClient();
+                _client.BaseAddress = new Uri(item);
+                _response = await _client.GetAsync($"");
+                json = await _response.Content.ReadAsStringAsync();
+                ApiGetLink agl = new ApiGetLink();
+                GetLink gl = new GetLink();
+                    gl = agl.getObjectfromText(json);
+                _client = new HttpClient();
+                _client.BaseAddress = new Uri(gl.image);//link 3
+                _response = await _client.GetAsync($"");
+                json = await _response.Content.ReadAsStringAsync();
+                ApiConvItem aci = new ApiConvItem();
+                    ls.Add(aci.getObjectfromText(json));
+            }catch(Exception E)
+            {
+                Debug.Log(E.Message);
+            }
+        }
+        //return json;
+        return ls;
     }
     public async Task<Link> GetLinkList(string link)
     {

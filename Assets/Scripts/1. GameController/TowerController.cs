@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 
 public class TowerController : MonoBehaviour
@@ -23,6 +21,8 @@ public class TowerController : MonoBehaviour
     //private Text upgradeText;
     [SerializeField]
     LayerMask towerPlacementLayer;
+    [SerializeField]
+    LayerMask towerLayer;
     //private ATower selectedTower;
     //private Transform tilePosition;
     //private string nextLevelId;
@@ -64,13 +64,31 @@ public class TowerController : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject()) return;
         if (Input.GetMouseButtonUp(0) && GameController.instance.State != State.End_Defeat)
         {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, towerPlacementLayer);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, towerPlacementLayer);
             if (hit.collider != null)
             {
                 if (hit.collider.CompareTag("TowerPlace"))
                 {
-                    Debug.Log(hit.collider.transform.GetSiblingIndex());
+                    //Debug.Log(hit.collider.transform.GetSiblingIndex());
                     StoryUIController.instance.OpenBuyTowerPanel(hit.collider.transform, hit.collider.transform.GetSiblingIndex());
+                }
+            }
+            else
+            {
+                StoryUIController.instance.CloseBuyTower();
+                hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, towerLayer);
+                //Debug.Log(hit.collider);
+                if (hit.collider != null)
+                {
+                    if (hit.collider.CompareTag("Tower"))
+                    {
+                        StoryUIController.instance.OpenUpgrade_SellPanel(hit.collider.transform, hit.collider.transform.parent.gameObject);
+                    }
+                }
+                else
+                {
+                    StoryUIController.instance.CloseUpgrade_SellPanel();
                 }
             }
         }
