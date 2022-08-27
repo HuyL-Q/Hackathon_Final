@@ -20,6 +20,7 @@ public class SamuraiBoss : MonoBehaviour
         {
             if (hp == value) return;
             hp = value;
+            EventController.Instance.DmgDealed += value;
             OnHealthChange?.Invoke();
         }
     }
@@ -34,6 +35,7 @@ public class SamuraiBoss : MonoBehaviour
         StartCoroutine(RunTowardsPosition());
         SetStatus();
         OnHealthChange += ReceiveDamage;
+
     }
 
     // Update is called once per frame
@@ -43,9 +45,9 @@ public class SamuraiBoss : MonoBehaviour
         {
             _animator.SetInteger("State", (int)State.Start);
             GameObject[] heroes = GameObject.FindGameObjectsWithTag("Hero");
-            foreach(GameObject hero in heroes)
+            foreach (GameObject hero in heroes)
             {
-                if(hero.GetComponent<Heroes>().HP > 0)
+                if (hero.GetComponent<Heroes>().HP > 0)
                 {
                     _animator.SetBool("hasHero", true);
                     break;
@@ -59,7 +61,7 @@ public class SamuraiBoss : MonoBehaviour
             //    Debug.Log(Hp);
             //}
             //time -= Time.deltaTime;
-            if(Hp <= 0)
+            if (Hp <= 0)
             {
                 _animator.SetTrigger("Dead");
                 EventController.Instance.State = State.End_Victory;
@@ -88,7 +90,7 @@ public class SamuraiBoss : MonoBehaviour
     public void Attack()
     {
         GameObject[] heroes = GameObject.FindGameObjectsWithTag("Hero");
-        foreach(GameObject hero in heroes)
+        foreach (GameObject hero in heroes)
         {
             hero.GetComponent<Heroes>().ReceiveDamage(AtkDamage);
         }

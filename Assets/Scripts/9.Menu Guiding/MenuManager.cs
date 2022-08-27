@@ -21,6 +21,12 @@ public class MenuManager : MonoBehaviour
             case MenuName.Marketplace:
                 SceneManager.LoadScene("Marketplace");
                 break;
+            case MenuName.Event:
+                SceneManager.LoadScene("Event");
+                break;
+            case MenuName.Mail:
+                SceneManager.LoadScene("Mail");
+                break;
         }
     }
 }

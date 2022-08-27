@@ -42,6 +42,7 @@ public class ApiConverter : MonoBehaviour
     }
     public async Task<Link> GetLinkList(string link)
     {
+        _client.BaseAddress = new Uri("http://localhost:8000/");
         Link ls = new Link();
         _response = await _client.GetAsync(link);
         var json = await _response.Content.ReadAsStringAsync();

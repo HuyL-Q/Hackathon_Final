@@ -20,4 +20,13 @@ public class MainMenu : MonoBehaviour
     {
         MenuManager.MenuSwitch(MenuName.Main);
     }    
+    public void Event()
+    {
+        MenuManager.MenuSwitch(MenuName.Event);
+    }
+    public void Mail()
+    {
+        MenuManager.MenuSwitch(MenuName.Mail);
+    }
+
 }

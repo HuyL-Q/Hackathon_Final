@@ -103,16 +103,18 @@ public class EventUIController : MonoBehaviour
         if(EventController.Instance.State == State.End_Defeat)
         {
             //var endScreenChild = endScreen.transform.GetChild(0);
-            endScreen.transform.GetChild(0).GetChild(0).GetComponent<Image>().DOColor(Color.red, 0.5f);
+            endScreen.transform.GetChild(0).GetChild(0).GetComponent<Image>().DOColor(Color.red, 0.5f).SetUpdate(true);
             endScreen.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = "Defeat";
+            Debug.Log(EventController.Instance.DmgDealed);
             endScreen.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "Damage: " + EventController.Instance.DmgDealed.ToString();
         }
         else
         {
             //var endScreenChild = endScreen.transform.GetChild(0);
-            endScreen.transform.GetChild(0).GetComponent<Image>().DOColor(Color.green, 0.5f);
-            endScreen.transform.GetChild(1).GetComponent<Text>().text = "Victory";
-            endScreen.transform.GetChild(2).GetComponent<Text>().text = "Damage: " + EventController.Instance.DmgDealed.ToString();
+            endScreen.transform.GetChild(0).GetChild(0).GetComponent<Image>().DOColor(Color.green, 0.5f).SetUpdate(true);
+            endScreen.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = "Victory";
+            string str = "Damage: " + EventController.Instance.DmgDealed.ToString();
+            endScreen.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = str;
         }
     }
     public void OpenBuyCircle(Transform targetPos, int placementIndex)

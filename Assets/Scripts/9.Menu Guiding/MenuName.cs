@@ -7,5 +7,7 @@ public enum MenuName
     Main,
     Gameplay,
     Equipment,
-    Marketplace
+    Marketplace,
+    Event,
+    Mail
 }

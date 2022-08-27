@@ -10,6 +10,7 @@ public class EventEnd : MonoBehaviour
     }
     public void GoToMain()
     {
+        Time.timeScale = 1;
         MenuManager.MenuSwitch(MenuName.Main);
     }
 }
