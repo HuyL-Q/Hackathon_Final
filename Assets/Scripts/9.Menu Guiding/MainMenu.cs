@@ -8,6 +8,10 @@ public class MainMenu : MonoBehaviour
     {
         MenuManager.MenuSwitch(MenuName.Gameplay);
     }
+    public void TransferMoney()
+    {
+        MenuManager.MenuSwitch(MenuName.TransferMoney);
+    }
     public void Equipment()
     {
         MenuManager.MenuSwitch(MenuName.Equipment);

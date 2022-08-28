@@ -27,6 +27,10 @@ public class MenuManager : MonoBehaviour
             case MenuName.Mail:
                 SceneManager.LoadScene("Mail");
                 break;
+            case MenuName.TransferMoney:
+                SceneManager.LoadScene("Transfer Money");
+                break;
+
         }
     }
 }

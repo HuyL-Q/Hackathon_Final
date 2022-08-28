@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Sell
+  - Boss04
+  - Minions04
+  - Minions01
+  - Boss02
+  - Minions05
+  - Minions03
+  - Minions02
+  - Boss01
+  - Boss03
+  - Minions
+  - Boss
+  - Tower
+  - TowerPlace
+  - Hero
+  - Equipment Slot
+  - Backpack Slot
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - TowerPlacement
+  - Tower
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

@@ -9,5 +9,6 @@ public enum MenuName
     Equipment,
     Marketplace,
     Event,
-    Mail
+    Mail,
+    TransferMoney
 }
